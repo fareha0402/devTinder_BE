@@ -1,0 +1,27 @@
+1.Middleware are teh functions which are called after client makes a request  to server.
+2.These functions basically handles request , response before reaching the route handlers.
+3.Used: -
+- to modify request and response
+- to call next Middleware
+- end request response cycle
+4.Middleware are executed in the order they are defined
+-- Perform tasks like : Authentication, logging or error handling
+5.These provide Separation concepts and manage complex routes efficiently.
+
+How Middleware Works in Express.js?
+In Express.js, middleware functions are executed sequentially in the order they are added to the application. Here’s how the typical flow works:
+
+Request arrives at the server.
+Middleware functions are applied to the request, one by one.
+Each middleware can either:
+Send a response and end the request-response cycle.
+Call next() to pass control to the next middleware.
+If no middleware ends the cycle, the route handler is reached, and a final response is sent.
+
+ app.use('/user',(req,res) =>{
+    console.log('Middleware')
+    next();
+ },
+ (req,res) =>{
+    res.send('Data sent')
+ })
